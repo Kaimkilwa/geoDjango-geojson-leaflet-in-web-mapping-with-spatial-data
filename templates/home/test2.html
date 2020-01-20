@@ -1,0 +1,28 @@
+<html>
+<head>
+    {% load leaflet_tags %}
+{% load geojson_tags %}
+
+{% block extra_assets %}
+  {% leaflet_js %}
+  {% leaflet_css %}
+{% endblock %}
+<div style="width:100%; height: 400px; display: inline; float: left">
+
+</div>
+    </head>
+    <body>
+    <h1>PGDay.IT 2019 Venue </h1>
+    <div id="m" style="width:1920px; height:1080px;">
+
+    </div>
+    <script type="text/javascript">
+    var m = L.map('m').setView([44.49,11.34],12);
+
+    L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(m);
+    {%for e in qs %}
+    L.marker({{e.lat_lon}}).addTo(m);
+    {%endfor%}
+    </script>
+</body>
+</html>
